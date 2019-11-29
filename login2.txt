@@ -1,0 +1,38 @@
+<?php
+$uname = $_POST["username"];
+
+$pass = $_POST["password"];
+
+echo "$password";
+//Connect to the database
+$con = mysqli_connect("localhost","root","","users");
+
+ //Make sure we connected successfully
+if (mysqli_connect_errno())
+{
+echo "Connetion attempt Failed :".mysqli_connect_error;
+}
+else{
+echo "Connection Status: Connected Successfully";
+echo "<br>";
+echo "<br>";
+}
+
+$q="SELECT * FROM user_login WHERE phone= '$uname' and password= '$pass'";
+ $result = mysqli_query($con,$q);
+
+
+$res= mysqli_num_rows($result);
+if($res==1){
+    echo "LOGIN SUCCESSFUL ";
+   
+    header('location:http://localhost:8080/prediction.html');
+
+}
+else
+{
+    echo "Sorry, your credentials are Invalid, Please try again ";
+
+   
+}
+
